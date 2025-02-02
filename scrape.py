@@ -1,3 +1,4 @@
+import sys
 import requests
 import json
 from bs4 import BeautifulSoup
@@ -9,7 +10,12 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import random
 
-input_query = "California Fires"
+# Get the search query from command-line arguments
+if len(sys.argv) < 2:
+    print("Error: No search query provided. Please provide a query as a command-line argument.")
+    sys.exit(1)
+
+input_query = sys.argv[1]  # Read from command-line argument
 
 # Number of valid news links required
 REQUIRED_NEWS_LINKS = 20
@@ -95,18 +101,7 @@ def get_google_search_links(query):
     return list(search_links)
 
 
-# Function to filter non-news articles
-def contains_non_news_keywords(text):
-    non_news_keywords = [
-        "Advertisement", "Supported by", "Subscribe for $1", "Subscribe now", 
-        "Click here to subscribe", "Get Started", "Subscribe", 
-        "Download Data", "Precinct Map", "Subscribe", "Sign In", "Read More",
-        "Follow NBC News", "Profile", "Sections", "More From", "news Alerts"
-    ]
-    return any(keyword in text for keyword in non_news_keywords)
-
-
-# Extract text and headline from articles
+# **Function to extract text and headline from articles**
 def scrape_article(url):
     try:
         print(f"Scraping: {url}")
@@ -142,12 +137,6 @@ def scrape_article(url):
                 paragraphs = article_body.find_all("p")
                 article_text = "\n".join([p.get_text(strip=True) for p in paragraphs if p.get_text(strip=True)])
 
-        if contains_non_news_keywords(article_text):
-            print(f"\nSkipping {url} - Detected as non-news content.\n")
-            return None, None  
-
-        article_text = article_text.split("© 2025")[0]
-
         if len(article_text) < 100:
             print(f"Skipping article: {url} (too little content)")
             return None, None  
@@ -159,7 +148,6 @@ def scrape_article(url):
         return None, None  
 
 
-# Function to filter valid news links
 # Dictionary mapping valid domains to their respective news source names
 VALID_NEWS_SOURCES = {
     "cnn.com": "CNN",
@@ -184,24 +172,21 @@ VALID_NEWS_SOURCES = {
     "indiatimes.com": "India Times",
     "cnbc.com": "CNBC",
     "msn.com": "MSN",
-    
 }
 
-# Function to filter valid news links, automatically adding .gov sources
+# Function to filter valid news links
 def filter_valid_news_links(links):
     valid_links = []
     
     for link in links:
         matched = False
 
-        # Check if the link belongs to a known source in VALID_NEWS_SOURCES
         for domain, source_name in VALID_NEWS_SOURCES.items():
             if domain in link:
                 valid_links.append({"link": link, "Provider": source_name})
                 matched = True
                 break  
 
-        # Automatically classify .gov domains
         if not matched and ".gov" in link:
             valid_links.append({"link": link, "Provider": "Official Government Source"})
 

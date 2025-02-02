@@ -1,7 +1,9 @@
 import subprocess
 
 # Define the input query for the news search
-input_query = "California Fires"
+input_query = "Philadelphia Plane Crash"
+
+
 
 # Step 1: Run `scrape.py` with the input query
 print("\nRunning Web Scraping...\n")
