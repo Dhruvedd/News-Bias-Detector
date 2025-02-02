@@ -1,7 +1,7 @@
 import subprocess
 
 # Define the input query for the news search
-input_query = "Philadelphia Plane Crash"
+input_query = ""
 
 
 

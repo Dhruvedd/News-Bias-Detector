@@ -1,0 +1,34 @@
+[
+    {
+        "link": "https://www.cbsnews.com/philadelphia/news/small-plane-crash-northeast-philadelphia-neighborhood-homes-catch-fire/",
+        "Provider": "CBS",
+        "headline": "Plane crash in Philadelphia neighborhood kills 7; several homes catch fire - CBS Philadelphia",
+        "summary": "A medical jet crashed in Northeast Philadelphia, killing 7. The plane, carrying a Mexican patient and crew, caused fires and injured over 20. Authorities are investigating.",
+        "biasFactor": "Center",
+        "reliabilityFactor": "High"
+    },
+    {
+        "link": "https://www.bbc.com/news/articles/ckg0m5n8g0do#:~:text=A%20small%20medical%20transport%20plane,ground%2C%20the%20mayor%20has%20confirmed.",
+        "Provider": "BBC",
+        "headline": "Mother and child among seven killed in Philadelphia medical jet crash",
+        "summary": "A medical transport plane crashed in Philadelphia, killing seven people, including a child and her mother. The jet was en route to Mexico and crashed minutes after takeoff, causing multiple fires. Investigations are ongoing.",
+        "biasFactor": "center",
+        "reliabilityFactor": "high"
+    },
+    {
+        "link": "https://www.nbcnews.com/news/us-news/philadelphia-plane-crash-fire-mall-northeast-rcna190262",
+        "Provider": "NBC News",
+        "headline": "Philadelphia plane crash: 6 onboard during fiery crash near homes and mall",
+        "summary": "An air ambulance carrying six people, including a pediatric patient and crew, crashed near a Philadelphia mall, resulting in fatalities and injuries. The cause is under investigation by the FAA and NTSB.",
+        "biasFactor": "center",
+        "reliabilityFactor": 0.95
+    },
+    {
+        "link": "https://www.bbc.com/news/articles/ckg0m5n8g0do",
+        "Provider": "BBC",
+        "headline": "Mother and child among seven killed in Philadelphia medical jet crash",
+        "summary": "A medical transport plane crashed in Philadelphia, killing seven, including a child and her mother. The cause is under investigation.",
+        "biasFactor": "center",
+        "reliabilityFactor": "high"
+    }
+]
