@@ -197,13 +197,13 @@ def filter_valid_news_links(links):
         # Check if the link belongs to a known source in VALID_NEWS_SOURCES
         for domain, source_name in VALID_NEWS_SOURCES.items():
             if domain in link:
-                valid_links.append({"link": link, "Name": source_name})
+                valid_links.append({"link": link, "Provider": source_name})
                 matched = True
                 break  
 
         # Automatically classify .gov domains
         if not matched and ".gov" in link:
-            valid_links.append({"link": link, "Name": "Official Government Source"})
+            valid_links.append({"link": link, "Provider": "Official Government Source"})
 
     return valid_links
 
@@ -222,7 +222,7 @@ if __name__ == "__main__":
     print("\nExtracting Articles...\n")
     for news_item in filtered_links:
         link = news_item["link"]
-        source = news_item["Name"]
+        source = news_item["Provider"]
         headline, article_content = scrape_article(link)
 
         if article_content:
